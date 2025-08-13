@@ -1,4 +1,4 @@
-# Spanish Food Ordering App
+# Spanish Food 
 
 A simple React (Next.js) application for browsing Spanish foods, adding them to a cart, and checking out.  
 Includes cart quantity controls, tax & shipping calculations, and persistent cart storage via `localStorage`.
@@ -21,5 +21,3 @@ Tech Stack
 - ailwind CSS
 - React Icons
 - Jest + React Testing Library (for testing.)
-
-## Folder Structure
