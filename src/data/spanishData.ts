@@ -5,7 +5,6 @@ export type SpanishFoodsProp = {
   image: string
 }
 
-  
   const spanishFoods:SpanishFoodsProp[] = [
   {
     "name": "Paella Valenciana",
