@@ -1,5 +1,5 @@
+import SpanishFood from "../components/SpanishFood";
+
 export default function Home() {
-  return (
-    <div>home</div>
-  );
+  return <SpanishFood />;
 }

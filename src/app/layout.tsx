@@ -16,7 +16,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header title="Spanish Food" />
         {children}
         <Footer />
       </body>
