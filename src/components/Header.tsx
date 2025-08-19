@@ -2,9 +2,9 @@ import Logo from "./Logo";
 
 export default function Header({ title }: { title: string }) {
   return (
-    <header>
+    <header className="w-full flex justify-center items-center gap-6">
       <Logo />
-      <h1>{title}</h1>
+      <h1 className="text-4xl font-bold text-red-800">{title}</h1>
     </header>
   );
 }
