@@ -1,7 +1,10 @@
-export default function Header() {
+import Logo from "./Logo";
+
+export default function Header({ title }: { title: string }) {
   return (
-    <div>
-      Hello
-    </div>
+    <header>
+      <Logo />
+      <h1>{title}</h1>
+    </header>
   );
 }
