@@ -83,19 +83,13 @@ const SpanishFood = () => {
   };
 
   return (
-    <div
-      data-testid="spanishInfo"
-      className="min-h-screen bg-gradient-to-br from-orange-50 to-red-50"
-    >
-      <header className="bg-white shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="bg-amber-500 w-full">
+    <div data-testid="spanishInfo" className="min-h-screen bg-black">
+      <header className="shadow-lg">
+        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center bg-amber-500  ">
+          <div className="w-full">
             <Header title="Spanish Food" />
             {isCartOpen && (
-              <div
-                className="fixed inset-0 bg-black bg-opacity-50 z-50"
-                onClick={toggleCart}
-              >
+              <div className="fixed inset-0 z-50 bg-none" onClick={toggleCart}>
                 <div
                   className="fixed right-0 top-0 h-full w-96 bg-white shadow-xl overflow-y-auto"
                   onClick={(e) => e.stopPropagation()}
@@ -200,7 +194,7 @@ const SpanishFood = () => {
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 py-8">
+      <div className="max-w-6xl mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {spanishFoods.map((food) => (
             <div
