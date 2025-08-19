@@ -1,9 +1,9 @@
-import {render, screen} from "@testing-library/react"
-import AddButton from "./"
+import { render, screen } from "@testing-library/react";
+import AddButton from "../components/AddButton";
 
 test("If there is a clickable button", () => {
-    render(<AddButton handleClick={() => {}} />)
+  render(<AddButton handleClick={() => {}} />);
 
-    const clickableButton = screen.getByRole("button")
-    expect(clickableButton).toBeInTheDocument()
-})
+  const clickableButton = screen.getByRole("button");
+  expect(clickableButton).toBeInTheDocument();
+});
