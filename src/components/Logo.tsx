@@ -1,7 +1,12 @@
 export default function Logo() {
   return (
     <div>
-      <img src="/public/images/spain.jpeg" alt="logo" data-testid="foodLogo" width={200} />
+      <img
+        src="/images/spain.jpeg"
+        alt="logo"
+        width={200}
+        data-testid="foodLogo"
+      />
     </div>
   );
 }
