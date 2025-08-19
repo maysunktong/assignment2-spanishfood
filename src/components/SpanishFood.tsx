@@ -199,10 +199,10 @@ const SpanishFood = () => {
           {spanishFoods.map((food) => (
             <div
               key={food.id}
-              className="relative bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
+              className="relative bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow"
               data-testid="foodCard"
             >
-              <div className="p-6 pb-16">
+              <div className="p-6">
                 <div className="w-full h-50 overflow-hidden">
                   <img
                     src={food.image}
