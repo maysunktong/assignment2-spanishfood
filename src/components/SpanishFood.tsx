@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ShoppingCart, Plus } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import spanishFoods from "@/data/spanishData";
 import Cart from "./Cart";
 import Header from "./Header";
@@ -101,49 +101,46 @@ const SpanishFood = () => {
 
   return (
     <div data-testid="spanishInfo" className="min-h-screen bg-black">
-      <header className="shadow-lg">
-        <div className="w-full flex justify-between items-center bg-amber-400">
-          <Header title="Spanish Food" />
-          {isCartOpen && (
-            <div
-              className="fixed inset-0 z-50 bg-black bg-opacity-50"
-              onClick={toggleCart}
-            >
-              <div
-                className="fixed right-0 top-0 h-full w-96 bg-white shadow-xl overflow-y-auto"
-                onClick={(e: React.MouseEvent) => e.stopPropagation()}
-                data-testid="cart"
-              >
-                <Cart
-                  items={cart}
-                  onRemove={removeFromCart}
-                  onIncrease={increaseQuantity}
-                  onDecrease={decreaseQuantity}
-                  subtotal={calculateSubtotal()}
-                  tax={calculateTax(calculateSubtotal())}
-                  shipping={calculateShipping()}
-                  total={calculateTotal()}
-                  onCheckout={handleCheckout}
-                />
-              </div>
-            </div>
+      <div className="w-full flex justify-between items-center bg-orange-700">
+        <Header title="Spanish Food" />
+        <button
+          type="button"
+          onClick={toggleCart}
+          className="p-2 hover:text-red-800 transition-colors flex"
+          data-testid="icon"
+        >
+          {cart.length > 0 && (
+            <span className="bg-black text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">
+              {getTotalItemCount()}
+            </span>
           )}
-
-          <button
+          <ShoppingCart size={32} />
+        </button>
+        {isCartOpen && (
+          <div
+            className="fixed inset-0 z-50 bg-black bg-opacity-50"
             onClick={toggleCart}
-            className="relative p-2 text-red-600 hover:text-red-800 transition-colors"
-            data-testid="icon"
           >
-            <ShoppingCart size={32} />
-            {cart.length > 0 && (
-              <span className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">
-                {getTotalItemCount()}
-              </span>
-            )}
-          </button>
-        </div>
-      </header>
-
+            <div
+              className="fixed right-0 top-0 h-full w-96 bg-white shadow-xl overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+              data-testid="cart"
+            >
+              <Cart
+                items={cart}
+                onRemove={removeFromCart}
+                onIncrease={increaseQuantity}
+                onDecrease={decreaseQuantity}
+                subtotal={calculateSubtotal()}
+                tax={calculateTax(calculateSubtotal())}
+                shipping={calculateShipping()}
+                total={calculateTotal()}
+                onCheckout={handleCheckout}
+              />
+            </div>
+          </div>
+        )}
+      </div>
       <div className="max-w-lg md:max-w-7xl mx-auto px-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
           {spanishFoods.map((food: Food) => (
@@ -173,7 +170,7 @@ const SpanishFood = () => {
                   className="absolute bottom-4 right-4 bg-red-600 hover:bg-red-700 text-white p-3 rounded-full shadow-lg flex items-center gap-2 transition-colors cursor-pointer"
                 >
                   {""}
-                  <Plus size={24} />
+                  <ShoppingCart size={24} />
                 </button>
               </div>
             </div>
