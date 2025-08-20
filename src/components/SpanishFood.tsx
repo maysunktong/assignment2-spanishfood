@@ -146,7 +146,7 @@ const SpanishFood = () => {
           {spanishFoods.map((food: Food) => (
             <div
               key={food.id}
-              className="relative bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl"
+              className="relative bg-white rounded-xl shadow-xl overflow-hidden border-5 border-black cursor-pointer"
               data-testid="foodCard"
             >
               <div className="w-full h-60 overflow-hidden">
