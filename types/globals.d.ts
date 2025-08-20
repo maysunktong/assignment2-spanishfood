@@ -1,5 +1,5 @@
 interface Food {
-  id: string | number;
+  id: number;
   name: string;
   description: string;
   price: number;
@@ -19,9 +19,9 @@ interface CartProps {
   onRemove: (id: CartItem["id"]) => void;
   onIncrease: (id: CartItem["id"]) => void;
   onDecrease: (id: CartItem["id"]) => void;
+  onCheckout: () => void;
   subtotal: number;
   tax: number;
   shipping: number;
   total: number;
-  onCheckout: () => void;
 }

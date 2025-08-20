@@ -27,7 +27,7 @@ export default function ({
                 <button
                   type="button"
                   onClick={() => onRemove(item.id)}
-                  className="absolute top-2 right-2 w-6 h-6 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors"
+                  className="w-6 h-6 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors"
                   title="Remove item"
                 >
                   <X size={14} />

@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
 import { ShoppingCart, Plus } from "lucide-react";
 import spanishFoods from "@/data/spanishData";
 import Cart from "./Cart";
@@ -9,36 +10,47 @@ const SpanishFood = () => {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
 
+  useEffect(() => {
+    const storedCart = localStorage.getItem("spanishFoodCart");
+    if (storedCart) {
+      setCart(JSON.parse(storedCart));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("spanishFoodCart", JSON.stringify(cart));
+  }, [cart]);
+
   const addToCart = (food: Food): void => {
-    setCart((prevCart: CartItem[]) => {
+    setCart((prev: CartItem[]) => {
       if (!food.id) {
-        console.error("Food item missing id:", food);
-        return prevCart;
+        console.error("Item missing id:", food);
+        return prev;
       }
 
-      const existingItem = prevCart.find((item) => item.id === food.id);
+      const existingItem = prev.find((item) => item.id === food.id);
 
       if (existingItem) {
-        return prevCart.map((item) =>
+        return prev.map((item) =>
           item.id === food.id ? { ...item, quantity: item.quantity + 1 } : item
         );
       } else {
-        return [...prevCart, { ...food, quantity: 1 }];
+        return [...prev, { ...food, quantity: 1 }];
       }
     });
   };
 
   const increaseQuantity = (itemId: number): void => {
-    setCart((prevCart: CartItem[]) =>
-      prevCart.map((item) =>
+    setCart((prev: CartItem[]) =>
+      prev.map((item) =>
         item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
       )
     );
   };
 
   const decreaseQuantity = (itemId: number): void => {
-    setCart((prevCart: CartItem[]) =>
-      prevCart
+    setCart((prev: CartItem[]) =>
+      prev
         .map((item) =>
           item.id === itemId && item.quantity > 1
             ? { ...item, quantity: item.quantity - 1 }
@@ -49,9 +61,7 @@ const SpanishFood = () => {
   };
 
   const removeFromCart = (itemId: number): void => {
-    setCart((prevCart: CartItem[]) =>
-      prevCart.filter((item) => item.id !== itemId)
-    );
+    setCart((prev: CartItem[]) => prev.filter((item) => item.id !== itemId));
   };
 
   const calculateSubtotal = (): number => {
@@ -74,9 +84,11 @@ const SpanishFood = () => {
   };
 
   const handleCheckout = (): void => {
-    const total = calculateTotal().toFixed(2);
+    const total = calculateTotal();
+    console.log("Checked out. Total:", total.toFixed(2));
     setCart([]);
     setIsCartOpen(false);
+    alert(`Total is €${total.toFixed(2)}`);
   };
 
   const toggleCart = (): void => {
@@ -90,7 +102,7 @@ const SpanishFood = () => {
   return (
     <div data-testid="spanishInfo" className="min-h-screen bg-black">
       <header className="shadow-lg">
-        <div className="w-full flex justify-between items-center bg-amber-500">
+        <div className="w-full flex justify-between items-center bg-amber-400">
           <Header title="Spanish Food" />
           {isCartOpen && (
             <div
@@ -107,10 +119,10 @@ const SpanishFood = () => {
                   onRemove={removeFromCart}
                   onIncrease={increaseQuantity}
                   onDecrease={decreaseQuantity}
-                  subtotal={calculateSubtotal}
-                  tax={calculateTax}
-                  shipping={calculateShipping}
-                  total={getTotalItemCount}
+                  subtotal={calculateSubtotal()}
+                  tax={calculateTax(calculateSubtotal())}
+                  shipping={calculateShipping()}
+                  total={calculateTotal()}
                   onCheckout={handleCheckout}
                 />
               </div>
