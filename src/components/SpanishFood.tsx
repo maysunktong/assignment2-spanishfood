@@ -10,17 +10,6 @@ const SpanishFood = () => {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
 
-  useEffect(() => {
-    const storedCart = localStorage.getItem("spanishFoodCart");
-    if (storedCart) {
-      setCart(JSON.parse(storedCart));
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("spanishFoodCart", JSON.stringify(cart));
-  }, [cart]);
-
   const addToCart = (food: Food): void => {
     setCart((prev: CartItem[]) => {
       if (!food.id) {
@@ -99,28 +88,39 @@ const SpanishFood = () => {
     return cart.reduce((sum, item) => sum + item.quantity, 0);
   };
 
+  useEffect(() => {
+    const storedCart = localStorage.getItem("spanishFoodCart");
+    if (storedCart) {
+      setCart(JSON.parse(storedCart));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("spanishFoodCart", JSON.stringify(cart));
+  }, [cart]);
+
   return (
-    <div data-testid="spanishInfo" className="min-h-screen bg-black">
+    <div
+      data-testid="spanishInfo"
+      className="bg-[url('/images/gordonsandwich.jpg')] w-full min-h-screen"
+    >
       <div className="w-full flex justify-between items-center bg-orange-700">
         <Header title="Spanish Food" />
         <button
           type="button"
           onClick={toggleCart}
-          className="p-2 hover:text-red-800 transition-colors flex"
+          className="p-2 md:pr-10 hover:text-white flex cursor-pointer"
           data-testid="icon"
         >
           {cart.length > 0 && (
-            <span className="bg-black text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">
+            <p className="bg-black text-white rounded-full w-10 h-10 flex items-center justify-center text-lg font-bold">
               {getTotalItemCount()}
-            </span>
+            </p>
           )}
-          <ShoppingCart size={32} />
+          <ShoppingCart size={40} />
         </button>
         {isCartOpen && (
-          <div
-            className="fixed inset-0 z-50 bg-black bg-opacity-50"
-            onClick={toggleCart}
-          >
+          <div className="fixed inset-0 z-50 bg-none" onClick={toggleCart}>
             <div
               className="fixed right-0 top-0 h-full w-96 bg-white shadow-xl overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
@@ -146,17 +146,17 @@ const SpanishFood = () => {
           {spanishFoods.map((food: Food) => (
             <div
               key={food.id}
-              className="relative bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow"
+              className="relative bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl"
               data-testid="foodCard"
             >
               <div className="w-full h-60 overflow-hidden">
                 <img
                   src={food.image}
                   alt={food.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover aspect-square"
                 />
               </div>
-              <div className="p-6">
+              <div className="w-full h-auto p-6">
                 <h3 className="text-xl font-semibold text-gray-800 mb-2">
                   {food.name}
                 </h3>
@@ -167,7 +167,7 @@ const SpanishFood = () => {
                 <button
                   type="button"
                   onClick={() => addToCart(food)}
-                  className="absolute bottom-4 right-4 bg-red-600 hover:bg-red-700 text-white p-3 rounded-full shadow-lg flex items-center gap-2 transition-colors cursor-pointer"
+                  className="absolute bottom-4 right-4 bg-red-600 hover:bg-red-700 text-white p-3 rounded-full shadow-lg flex items-center gap-2 cursor-pointer"
                 >
                   {""}
                   <ShoppingCart size={24} />
