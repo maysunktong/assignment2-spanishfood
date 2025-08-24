@@ -1,5 +1,10 @@
 import SpanishFood from "../components/SpanishFood";
 
 export default function Home() {
-  return <SpanishFood />;
+  return (
+    <>
+      <h1>Banner</h1>
+      <SpanishFood />
+    </>
+  );
 }
