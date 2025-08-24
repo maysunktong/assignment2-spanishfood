@@ -2,7 +2,7 @@ import { fireEvent, render, screen, within } from "@testing-library/react";
 import Cart from "../components/Cart";
 
 describe("testing if the cart functions as required", () => {
-  const mockData = { name: "pasta", price: 10, quantity: 6 };
+  const mockData: CartItem = { name: "pasta", price: 10, quantity: 6 };
 
   beforeEach(() => {
     render(
@@ -100,7 +100,7 @@ describe("Displays all the information when the cart is open", () => {
   });
 
   test("if quantity of item is included", () => {
-    const listItem = screen.getByText("pizza").closest("li")!; //value is not null or undefined
+    const listItem = screen.getByText("pizza").closest("li")!;
     const quantityInfo = within(listItem).getByText(/10/);
     expect(quantityInfo).toBeInTheDocument();
   });
@@ -131,7 +131,7 @@ describe("Displays all the information when the cart is open", () => {
 
   test("testing for tax", () => {
     const subTotal = 150;
-    const taxRate = 0.07;
+    const taxRate = 0.07; /* 7% tax */
     const expectedTax = `€${(subTotal * taxRate).toFixed(2)}`;
     const totalTax = screen.getByText(expectedTax);
 

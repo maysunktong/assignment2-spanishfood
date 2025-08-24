@@ -58,7 +58,7 @@ const SpanishFood = () => {
   };
 
   const calculateTax = (subtotal: number): number => {
-    return subtotal * 0.07;
+    return subtotal * 0.07; /*  */
   };
 
   const calculateShipping = (): number => {
@@ -109,7 +109,7 @@ const SpanishFood = () => {
         <button
           type="button"
           onClick={toggleCart}
-          className="p-2 md:pr-10 hover:text-white flex cursor-pointer"
+          className="p-2 md:pr-10 flex cursor-pointer"
           data-testid="icon"
         >
           {cart.length > 0 && (
@@ -117,12 +117,12 @@ const SpanishFood = () => {
               {getTotalItemCount()}
             </p>
           )}
-          <ShoppingCart size={40} />
+          <ShoppingCart color="white" size={40} />
         </button>
         {isCartOpen && (
           <div className="fixed inset-0 z-50 bg-none" onClick={toggleCart}>
             <div
-              className="fixed right-0 top-0 h-full w-96 bg-white shadow-xl overflow-y-auto"
+              className="fixed right-0 top-0 h-full w-96 bg-yellow-500 shadow-xl overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
               data-testid="cart"
             >

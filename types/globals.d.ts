@@ -1,9 +1,9 @@
 interface Food {
   id: number;
   name: string;
-  description: string;
+  description?: string;
   price: number;
-  image: string;
+  image?: string;
 }
 
 interface CartItem extends Food {
@@ -16,9 +16,9 @@ interface HeaderProps {
 
 interface CartProps {
   items: CartItem[];
-  onRemove: (id: CartItem["id"]) => void;
-  onIncrease: (id: CartItem["id"]) => void;
-  onDecrease: (id: CartItem["id"]) => void;
+  onRemove: (id: number) => void;
+  onIncrease: (id: number) => void;
+  onDecrease: (id: number) => void;
   onCheckout: () => void;
   subtotal: number;
   tax: number;

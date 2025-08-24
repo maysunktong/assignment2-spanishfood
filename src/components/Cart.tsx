@@ -21,25 +21,23 @@ export default function ({
       </h3>
 
       {items.length === 0 ? (
-        <p className="text-gray-600 text-center">Your cart is empty.</p>
+        <p className="text-black text-center">Your cart is empty.</p>
       ) : (
         <>
-          <ul className="space-y-4 mb-6">
+          <ul className="space-y-4 mb-6 text-black">
             {items.map((item: CartItem) => (
               <li key={item.id} className="relative bg-gray-50 p-3 rounded-lg">
                 <button
                   type="button"
                   onClick={() => onRemove(item.id)}
-                  className="absolute right-0 -top-2 w-6 h-6 bg-gray-500 hover:bg-gray-400 text-white rounded-full flex items-center justify-center cursor-pointer"
+                  className="absolute right-0 -top-2 w-6 h-6 bg-gray-500 hover:bg-gray-400 rounded-full flex items-center justify-center cursor-pointer"
                   title="Remove item"
                 >
                   <X size={14} />
                 </button>
                 <div className="flex justify-between items-center">
                   <h4 className="font-semibold pb-3">{item.name}</h4>
-                  <p className="text-sm text-gray-600">
-                    €{item.price.toFixed(2)}
-                  </p>
+                  <p className="text-sm">€{item.price.toFixed(2)}</p>
                 </div>
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-3">
@@ -72,7 +70,7 @@ export default function ({
               </li>
             ))}
           </ul>
-          <div className="pt-4 space-y-2 bg-gray-300 rounded-2xl p-4">
+          <div className="pt-4 space-y-2 bg-white rounded-2xl p-4 text-black">
             <div className="flex justify-between">
               <span>Subtotal:</span>
               <span data-testid="subTotalData">€{subtotal.toFixed(2)}</span>
