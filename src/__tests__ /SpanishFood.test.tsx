@@ -23,7 +23,7 @@ describe("SpanishFood Integration Test", () => {
 
     const addButton = within(expectedFoodItem).getByRole("button");
     fireEvent.click(addButton);
-    fireEvent.click(addButton);
+    fireEvent.click(addButton); /* add 2 times */
 
     const cartIcon = screen.getByTestId("icon");
     fireEvent.click(cartIcon);
