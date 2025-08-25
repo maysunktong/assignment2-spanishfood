@@ -11,6 +11,8 @@ describe("If header has logo and title", () => {
   });
 
   test("If header has a logo", () => {
+    /* could test it with AltText or by role img*/
+   /*  const logo = screen.getByAltText(/logo/i) as HTMLImageElement; */
     const mockData = "Foods";
     render(<Header title={mockData} />);
 
