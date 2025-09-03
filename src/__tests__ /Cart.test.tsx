@@ -2,7 +2,7 @@ import { fireEvent, render, screen, within } from "@testing-library/react";
 import Cart from "../components/Cart";
 
 describe("testing if the cart functions as required", () => {
-  const mockData: CartItem = { id:1, name: "pasta", price: 10, quantity: 6 };
+  const mockData: CartItem = { id: 1, name: "pasta", price: 10, quantity: 6 };
 
   beforeEach(() => {
     render(
