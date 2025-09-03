@@ -16,9 +16,9 @@ interface HeaderProps {
 
 interface CartProps {
   items: CartItem[];
-  onRemove: (id: number | null) => void;
-  onIncrease: (id: number | null) => void;
-  onDecrease: (id: number | null) => void;
+  onRemove: (id: number) => void;
+  onIncrease: (id: number) => void;
+  onDecrease: (id: number) => void;
   onCheckout: () => void;
   subtotal: number;
   tax: number;
