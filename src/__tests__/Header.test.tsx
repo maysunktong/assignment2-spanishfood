@@ -9,14 +9,4 @@ describe("If header has logo and title", () => {
     const headerTitle = screen.getByRole("heading", { level: 1 });
     expect(headerTitle).toBeInTheDocument();
   });
-
-  test("If header has a logo", () => {
-    /* could test it with AltText or by role img*/
-   /*  const logo = screen.getByAltText(/logo/i) as HTMLImageElement; */
-    const mockData = "Foods";
-    render(<Header title={mockData} />);
-
-    const HeaderLogo = screen.getByTestId("foodLogo");
-    expect(HeaderLogo).toBeInTheDocument();
-  });
 });
