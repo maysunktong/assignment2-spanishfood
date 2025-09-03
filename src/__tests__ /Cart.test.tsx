@@ -70,7 +70,7 @@ test("Whether the cart is empty", () => {
 });
 
 describe("Displays all the information when the cart is open", () => {
-  const mockData = { name: "pizza", price: 15, quantity: 10 };
+  const mockData = { id: 1, name: "pizza", price: 15, quantity: 10 };
 
   beforeEach(() => {
     render(
